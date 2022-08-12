@@ -14,7 +14,7 @@ def printActors():
                 actors[star]['Movies'] += 1
                 actors[star]['Rating'] = actors[star]['Rating'] + float(movie['rating'])
     for actor in list(actors.keys()):
-        if actors[actor]["Movies"] <= 1:
+        if actors[actor]["Movies"] == 1:
             del actors[actor]
     print(actors)
     data.close()
