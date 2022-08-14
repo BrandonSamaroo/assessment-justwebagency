@@ -1,5 +1,4 @@
 import json
-import sys
 
 def printActors():
     data = open('data.json')
@@ -12,9 +11,11 @@ def printActors():
                 actors[star] = {'Movies': 1, 'Rating': float(movie['rating'])}
             else:
                 actors[star]['Movies'] += 1
-                actors[star]['Rating'] = actors[star]['Rating'] + float(movie['rating'])
+                actors[star]['Rating'] += float(movie['rating'])
     for actor in list(actors.keys()):
         if actors[actor]["Movies"] == 1:
             del actors[actor]
-    print(actors)
+    actors = sorted(actors.items(), key = lambda x: (x[1]["Movies"]))
+    for actor in actors:
+        print("Star Name: " + actor[0] + "   /  Movies:  " + str(actor[1]["Movies"])  + "   /   AVG Rating:  " + str(round(actor[1]["Rating"]/actor[1]["Movies"],2)))
     data.close()
